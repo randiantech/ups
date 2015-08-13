@@ -5,7 +5,7 @@ var router = express.Router();
 var db = mongojs('rtdb', ['profile'])
 
 router.get('/', function (req, res) {
-    winston.log('info', 'Application LALALA');
+    winston.log('info', 'Application TEST');
     db.profile.find(function (err, docs) {
         if(!docs) winston.log('info','no hay una reverenda verga');
         res.send(docs);
