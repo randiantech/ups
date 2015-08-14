@@ -1,8 +1,7 @@
-var express = require('express');
 var winston = require('winston');
 var mongojs = require('mongojs');
-var router = express.Router();
-var db = mongojs('rtdb', ['profile'])
+var router = require('express').Router();
+var db = mongojs('rtdb', ['profile']);
 
 router.get('/', function (req, res) {
     winston.log('info', 'Application TEST2');
