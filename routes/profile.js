@@ -7,7 +7,7 @@ var db = mongojs('rtdb', ['profile'])
 router.get('/', function (req, res) {
     winston.log('info', 'Application TEST2');
     db.profile.find(function (err, docs) {
-        if(!docs) winston.log('info','no hay una reverenda verga');
+        if(!docs) winston.log('info','no data');
         res.send(docs);
     });
 });
