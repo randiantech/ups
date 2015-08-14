@@ -1,3 +1,5 @@
+var RtError = require('../utils/utils').RtError;
+
 function Profile(profile) {
 
     var _firstName;
@@ -12,7 +14,7 @@ function Profile(profile) {
     };
 
     var _validateFirstName = function(firstName) {
-        if (!_isValidFirstName(firstName)) throw new Error("PROFILE:::FIRST_NAME_IS_NOT_VALID");
+        if (!_isValidFirstName(firstName)) throw new RtError("Profile.firstName is not valid", ["Must not be null", "Length > 3"]);
     };
 
     var _validateLastName = function(lastName) {
@@ -51,7 +53,7 @@ function Profile(profile) {
         set lastName(lastName) {
             _lastName = lastName;
         }
-    }
+    };
 }
 
 /**

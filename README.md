@@ -15,3 +15,9 @@ Example:
   "firstName":"Juan Carlos",
   "lastName" :"Cancela"
 }
+
+
+Testing with cURL:
+
+-> curl -X POST -d @000_correct_profile.json -H "Accept: application/json" -H "Content-Type: application/json" http://localhost:5000/profile
+-> curl -X POST -d @001_bad_length_first_name.json -H "Accept: application/json" -H "Content-Type: application/json" http://localhost:5000/profile
