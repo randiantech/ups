@@ -1,36 +1,22 @@
-var RtError = require('../utils/utils').RtError;
+var isNotNull = require('./validation/isNotNull');
+var isLengthGreaterThan = require('./validation/isLengthGreaterThan');
+
+const MIN_NAME_LENGTH = 3;
+
+function _validateProfile(profile){
+    isNotNull.evaluate('profile', profile);
+    isNotNull.evaluate('profile.firstName', profile.firstName);
+    isNotNull.evaluate('profile.lastName', profile.firstName);
+    isLengthGreaterThan.evaluate('profile.firstName', profile.firstName, [MIN_NAME_LENGTH]);
+    isLengthGreaterThan.evaluate('profile.lastName', profile.lastName, [MIN_NAME_LENGTH]);
+}
 
 function Profile(profile) {
 
-    var _firstName;
-    var _lastName;
-
-    var _isValidFirstName = function (firstName) {
-        return firstName && firstName.length > 3;
-    };
-
-    var _isValidLastName = function (lastName) {
-        return lastName && lastName.length > 3;
-    };
-
-    var _validateFirstName = function(firstName) {
-        if (!_isValidFirstName(firstName)) throw new RtError("Profile.firstName is not valid", ["Must not be null", "Length > 3"]);
-    };
-
-    var _validateLastName = function(lastName) {
-        if (!_isValidLastName(lastName)) throw new Error("PROFILE:::LAST_NAME_IS_NOT_VALID");
-    };
-
-    var _validateProfile = function(profile){
-        if (!profile) throw new Error("PROFILE:::MISSING_ALL_MANDATORY_VALUES");
-        _validateFirstName(profile.firstName);
-        _validateLastName(profile.lastName);
-    };
-
     _validateProfile(profile);
 
-    _firstName = profile.firstName;
-    _lastName = profile.lastName;
+    var _firstName = profile.firstName;
+    var _lastName = profile.lastName;
 
     return {
         get fullName() {
@@ -41,17 +27,8 @@ function Profile(profile) {
             return _firstName;
         },
 
-        set firstName(firstName) {
-            _validateFirstName(firstName);
-            _firstName = firstName;
-        },
-
         get lastName() {
             return _lastName;
-        },
-
-        set lastName(lastName) {
-            _lastName = lastName;
         }
     };
 }
