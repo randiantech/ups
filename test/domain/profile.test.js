@@ -3,7 +3,7 @@ var Profile = require('../../domain/profile').Profile;
 
 describe('Profile', function () {
 
-    var validProfile = new Profile({firstName : "Pepe", lastName : "Pepo"});
+    var validProfile = new Profile({firstName : "Pepe", lastName : "Pepo", image: "http://www.images.com/image.jpg"});
 
     it('should set firstName property if provided correct first name', function () {
         assert.equal(validProfile.firstName, "Pepe", "Setting Profile.firstName");
@@ -35,5 +35,19 @@ describe('Profile', function () {
 
     it('should set fullName property as concat of firstName and lastName properties', function () {
         assert.equal(validProfile.fullName, "Pepe Pepo", "Setting Profile.fullName");
+    });
+
+    it('should set image property if provided a valid URL', function () {
+        assert.equal(validProfile.image, "http://www.images.com/image.jpg", "Setting Profile.image");
+    });
+
+    it('should throw an exception with a descriptive error message if image is not a valid URL', function () {
+        var invalidUrl = "NotAvalidUrl";
+        try{
+            new Profile({firstName : "Pepe", lastName: "Cancela", image : invalidUrl});
+        } catch(error){
+            return;
+        }
+        assert.fail();
     });
 });
