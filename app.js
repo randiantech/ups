@@ -12,12 +12,13 @@ var app = express();
 app.set('view engine', 'ejs');
 app.use( bodyParser.json() );
 app.set('port', (process.env.PORT || 5000));
-app.set('jwtTokenSecret', require('./.env').env().secret);
+app.set('secret', require('./.env').env().secret);
 
 /* middleware */
 before(app);
 app.use('/', docs);
 app.use('/profile', profile);
+app.use('/auth', auth);
 after(app);
 
 /* server start */
