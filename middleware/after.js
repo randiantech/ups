@@ -1,6 +1,6 @@
 function after(app) {
     app.use(function (req, res, next) {
-        console.log("RESPONSE FINISHED");
+        //console.log("RESPONSE FINISHED");
     });
 }
 

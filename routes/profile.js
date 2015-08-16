@@ -1,18 +1,19 @@
-var winston = require('winston');
 var mongojs = require('mongojs');
 var router = require('express').Router();
 var Profile = require('../domain/profile').Profile;
 var db = mongojs('rtdb', ['profile']);
+var log = require('../utils/utils').log;
+var RtError = require('../utils/utils').RtError;
 
 router.get('/', function (req, res, next) {
-    winston.log('info', 'PROFILE:::FIND:::' + new Date());
+    log('I0003', req, ['GET','/profile']);
     db.profile.find(function (error, profiles) {
         if (error) {
-            winston.log('info', 'no profiles found');
+            log('I0002', req, null);
             res.send(404);
             next();
         }
-        if (!profiles) winston.log('info', 'no profiles found');
+        if (!profiles) log('I0002', req, null);
         res.send(_prepare(profiles));
         next();
     });
@@ -22,13 +23,12 @@ router.post('/', function (req, res) {
     try {
         db.profile.save(new Profile(req.body), function (error) {
             if (error) {
-                winston.log('error', 'profile could not be saved');
-                res.send(error);
+                res.send(new RtError('E0004', req, error).message);
             }
             res.send(201);
         });
     } catch (error) {
-        res.send(422, error.message);
+        res.send(422, new RtError('E0004', req, error).message);
     }
 });
 

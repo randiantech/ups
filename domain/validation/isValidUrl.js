@@ -16,7 +16,7 @@ function evaluate(name, value, constraints){
  * Description to be used in the error in case evaluated value is not valid
  * @param name the name of the value to be evaluated
  * @param value the value to be evaluated
- * @param constraints constraints required to construct the evaluation criteria
+ * @param constraints constraints required to construct the description
  * @returns {string} the error description
  * @private
  */

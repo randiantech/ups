@@ -20,10 +20,12 @@
     "body-parser": "1.13.3",
     "ejs": "2.3.3",
     "express": "4.13.3",
+    "json-stringify-safe": "^5.0.1",
     "jwt-simple": "^0.3.0",
     "mocha": "2.2.5",
     "moment": "^2.10.6",
     "mongojs": "1.2.1",
+    "node-uuid": "^1.4.3",
     "winston": "1.0.1"
   }
 }
