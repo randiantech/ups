@@ -1,7 +1,7 @@
 # ups
 Universal Profile Service
 
-![alt tag](https://dl.dropboxusercontent.com/u/3868882/helmet-33950_640.png)
+![alt tag](https://dl.dropboxusercontent.com/u/3868882/ups.png)
 
 # Profile Schema
 
