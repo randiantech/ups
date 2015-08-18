@@ -7,6 +7,7 @@ var before = require('./middleware/before').before;
 var after = require('./middleware/after').after;
 require('rt-log').setup();
 global.LOG = require('rt-log').log;
+global.ERROR = require('rt-log').error;
 var app = express();
 
 /* app configuration */

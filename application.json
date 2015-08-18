@@ -8,6 +8,9 @@
     "E0002": "Authentication token has expired: %0",
     "E0003": "Invalid authentication token",
     "E0004": "Profile could not be saved: %0",
-    "E0005": "Invalid user and/or password"
+    "E0005": "Invalid user and/or password",
+    "E0006": "%0 length must be greater than %1. Current value: %2",
+    "E0007": "%0 length must not be null",
+    "E0008": "%0 is not a valid URL"
   }
 }

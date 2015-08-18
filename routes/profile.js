@@ -2,7 +2,6 @@ var mongojs = require('mongojs');
 var router = require('express').Router();
 var Profile = require('../domain/profile').Profile;
 var db = mongojs('rtdb', ['profile']);
-var RtError = require('../utils/utils').RtError;
 
 router.get('/', function (req, res, next) {
     LOG('I0003', req, ['GET','/profile']);
@@ -22,12 +21,12 @@ router.post('/', function (req, res) {
     try {
         db.profile.save(new Profile(req.body), function (error) {
             if (error) {
-                res.send(new RtError('E0004', req, error).message);
+                res.send(new ERROR('E0004', req, error).message);
             }
             res.send(201);
         });
     } catch (error) {
-        res.send(422, new RtError('E0004', req, error).message);
+        res.send(422, new ERROR('E0004', req, error).message);
     }
 });
 

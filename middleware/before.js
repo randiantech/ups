@@ -1,4 +1,3 @@
-var RtError = require('../utils/utils').RtError;
 var jwt = require('jwt-simple');
 var uuid = require('node-uuid');
 
@@ -22,18 +21,18 @@ function before(app) {
         } else {
             var encodedToken = req.headers['x-access-token'];
             if (!encodedToken) {
-                res.send(new RtError('E0001').message);
+                res.send(new ERROR('E0001', req).message);
             } else {
                 try {
                     var decodedToken = jwt.decode(encodedToken, req.secret);
                     LOG('I0001', req, decodedToken);
                     if (decodedToken.exp <= Date.now()) {
-                        res.end(new RtError('E0002').message, 400);
+                        res.end(new ERROR('E0002', req, decodedToken).message, 400);
                     } else {
                         next();
                     }
                 } catch (error) {
-                    res.send(new RtError('E0003').message);
+                    res.send(new ERROR('E0003', req).message);
                 }
             }
         }
