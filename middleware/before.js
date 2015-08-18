@@ -1,5 +1,4 @@
 var RtError = require('../utils/utils').RtError;
-var log = require('../utils/utils').log;
 var jwt = require('jwt-simple');
 var uuid = require('node-uuid');
 
@@ -27,7 +26,7 @@ function before(app) {
             } else {
                 try {
                     var decodedToken = jwt.decode(encodedToken, req.secret);
-                    log('I0001', req, decodedToken);
+                    LOG('I0001', req, decodedToken);
                     if (decodedToken.exp <= Date.now()) {
                         res.end(new RtError('E0002').message, 400);
                     } else {

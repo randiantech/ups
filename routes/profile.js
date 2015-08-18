@@ -2,18 +2,17 @@ var mongojs = require('mongojs');
 var router = require('express').Router();
 var Profile = require('../domain/profile').Profile;
 var db = mongojs('rtdb', ['profile']);
-var log = require('../utils/utils').log;
 var RtError = require('../utils/utils').RtError;
 
 router.get('/', function (req, res, next) {
-    log('I0003', req, ['GET','/profile']);
+    LOG('I0003', req, ['GET','/profile']);
     db.profile.find(function (error, profiles) {
         if (error) {
-            log('I0002', req, null);
+            LOG('I0002', req, null);
             res.send(404);
             next();
         }
-        if (!profiles) log('I0002', req, null);
+        if (!profiles) LOG('I0002', req, null);
         res.send(_prepare(profiles));
         next();
     });

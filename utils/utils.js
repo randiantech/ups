@@ -41,11 +41,8 @@ function log(code, req, params){
     }
     var isoDate = new Date();
     isoDate = isoDate.toISOString();
-
     req ? req = stringify(_serializeRequest(req)) : req = 'no request';
-
     var description = typeof LOG_CODES[code] == 'function' ? LOG_CODES[code](params) : LOG_CODES[code];
-
     winston.log(severity, isoDate + '|' + code  + '|' + trace + '|' + description + '|' + req);
 }
 

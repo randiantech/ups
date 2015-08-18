@@ -1,4 +1,3 @@
-var winston = require('winston');
 var router = require('express').Router();
 
 router.get('/', function (req, res) {
